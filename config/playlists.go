@@ -58,19 +58,14 @@ func (p *Playlists) createMap(spotifyClient *spotify.Client, file *os.File) erro
 }
 
 func (p *Playlists) createFolders(path *string) error {
-	err := os.Chdir(*path)
-	if err != nil {
+	if err := os.Chdir(*path); err != nil {
 		return err
 	}
 
 	for _, v := range p.Playlists {
 		if _, err := os.Stat(v); os.IsNotExist(err) {
-			os.Mkdir(v, os.ModeDir)
+			os.Mkdir(v, 0777)
 			fmt.Printf("Creating folder: %v\n", v)
-		}
-
-		if err != nil {
-			fmt.Println(err)
 		}
 	}
 
