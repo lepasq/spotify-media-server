@@ -11,7 +11,7 @@ import (
 func main() {
 	client, err := config.Authenticate()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("%v\nDid you add the environment variables $SPOTIFY_ID and $SPOTIFY_SECRET?\nYou can get them from https://developer.spotify.com/dashboard/login.\n", err)
 		return
 	}
 
