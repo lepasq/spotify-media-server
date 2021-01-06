@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"spotify-media-server/config"
-	"spotify-media-server/schedule"
 	"time"
+
+	"github.com/lepasq/spotify-media-server/config"
+	"github.com/lepasq/spotify-media-server/schedule"
 )
 
 func main() {

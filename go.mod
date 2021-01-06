@@ -1,4 +1,4 @@
-module spotify-media-server
+module github.com/lepasq/spotify-media-server
 
 go 1.15
 

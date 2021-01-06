@@ -1,9 +1,10 @@
 package schedule
 
 import (
-	"spotify-media-server/config"
-	"spotify-media-server/download"
 	"time"
+
+	"github.com/lepasq/spotify-media-server/config"
+	"github.com/lepasq/spotify-media-server/download"
 
 	"github.com/zmb3/spotify"
 )
