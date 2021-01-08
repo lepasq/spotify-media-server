@@ -72,7 +72,7 @@ pip install git+https://github.com/nficano/pytube
 
 * When downloading a playlist for the first time, SMS will run `spotdl $playlist`. The above command will start by searching the corresponding YouTube video for <b>each</b> track in the playlist. If you are using a large playlist, this process may take quite long.
 
-If it takes more than 5 minutes, you should try runnign `spotdl $playlist` on its own. If `spotdl` is stuck at `Fetching playlist`, it's very likely that your version of `pytube` is outdated. try to do reinstall pytube:
+If it takes more than 5 minutes, you should try running `spotdl $playlist` on its own. If `spotdl` is stuck at `Fetching playlist`, it's very likely that your version of `pytube` is outdated. Try to do reinstall pytube:
 ```sh
 pip uninstall pytube
 pip uninstall spotdl
