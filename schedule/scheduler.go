@@ -2,6 +2,7 @@ package schedule
 
 import (
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/lepasq/spotify-media-server/config"
@@ -16,9 +17,17 @@ type Scheduler struct {
 	Playlist *config.Playlists
 }
 
+var path string
+
 // Watch fetches playlist updates with duration d in between
 func Watch(d time.Duration) error {
 	for {
+		var err error
+		path, err = setupConfigLocation()
+		if err != nil {
+			return err
+		}
+
 		client, err := setupClient()
 		if err != nil {
 			return err
@@ -64,4 +73,19 @@ func setupPlaylists(client *spotify.Client) (*config.Playlists, error) {
 		return nil, err
 	}
 	return &playlist, nil
+}
+
+func setupConfigLocation() (string, error) {
+	if path != "" {
+		if err := os.Chdir(path); err != nil {
+			return "", err
+		}
+	} else {
+		var err error
+		path, err = os.Getwd()
+		if err != nil {
+			return "", err
+		}
+	}
+	return path, nil
 }
