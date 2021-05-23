@@ -36,7 +36,7 @@ func (p *Playlists) parsePlaylists(spotifyClient *spotify.Client) error {
 	}
 
 	if err := p.createMap(spotifyClient, file); err != nil {
-
+		return err
 	}
 	return nil
 }
@@ -58,6 +58,12 @@ func (p *Playlists) createMap(spotifyClient *spotify.Client, file *os.File) erro
 }
 
 func (p *Playlists) createFolders(path *string) error {
+	if _, err := os.Stat(*path); os.IsNotExist(err) {
+		if err = os.Mkdir(*path, 0777); err != nil {
+			fmt.Println(err)
+		}
+	}
+
 	if err := os.Chdir(*path); err != nil {
 		return err
 	}
@@ -66,6 +72,7 @@ func (p *Playlists) createFolders(path *string) error {
 		if _, err := os.Stat(v); os.IsNotExist(err) {
 			os.Mkdir(v, 0777)
 			fmt.Printf("Creating folder: %v\n", v)
+			os.Chdir("..") // needed in case the path in $GOSMS is relative
 		}
 	}
 
